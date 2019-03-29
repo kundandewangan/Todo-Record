@@ -9,25 +9,36 @@ class App extends Component {
       {
         id:1,
         title:"Ohhhh mama",
-        completed:false
+        
       },
       {
         id:2,
         title:"Go everyone",
-        completed:false
+        
       },
       {
         id:3,
         title:"Yo yo funny singh",
-        completed:false
+        
       }
     ]
+  }
+
+  deleteTodo=(id)=>{
+    //console.log(id);
+    const todos=this.state.todos.filter(todo => {
+      return todo.id!==id
+    });
+    this.setState({
+      todos
+    })
   }
   render() {
     
     return (
-      <div className="App">
-        <Todos todos={this.state.todos}/>
+      <div className="todo-app container">
+        <h1 className="center blue-text">Todo's</h1>
+        <Todos todos = {this.state.todos} deleteTodo={this.deleteTodo} />
       </div>
     );
   }

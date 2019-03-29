@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
-import Todoitem from './Todoitem';
-import PropTypes from 'prop-types';
-class Todos extends Component {
-  render() {
-    //console.log(this.props.todos)
-    return this.props.todos.map((todo)=>     //map is high order array method can return array from array, we are using it here to loop through and output the jsx
-    (
-      <Todoitem key={todo.id} todo={todo}/>
-    ));
-  }
-}
 
+
+
+const Todos = ({todos, deleteTodo}) =>{
+  
+  const todoList=todos.length ? (todos.map(todo => {
+      return (
+        <div className="collection-item" key ={todo.id}>
+          <span onClick= { () => {deleteTodo(todo.id)} }> {todo.title}</span>
+        </div>
+
+      )
+    })
+    ):(
+      <p classname="center">YOu have no todos left </p> 
+    )
+    return(
+    <div className="todos collection">
+      {todoList}
+    </div>
+  )
+}
+ 
 export default Todos;
